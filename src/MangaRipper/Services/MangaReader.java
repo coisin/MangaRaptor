@@ -6,6 +6,7 @@ import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Page;
 import MangaRipper.DataStructures.StringPair;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -44,10 +45,8 @@ public class MangaReader extends Service {
 
         for(StringPair pair:pagePair) {
             String pagePath = sitePath + pair.one;
-            if(!pagePath.startsWith("http://www.")) {
-
-            }
             Page page = new Page(pagePath, pair.two, getImagePath(pagePath));
+            page.size = downloader.getFileSize(pagePath);
             pages.add(page);
         }
 

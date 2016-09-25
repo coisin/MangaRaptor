@@ -65,4 +65,16 @@ public class Downloader {
         }
     }
 
+    public int getFileSize(String path) {
+        try {
+            URL url = new URL(path);
+            URLConnection connection = url.openConnection();
+            connection.connect();
+            return connection.getContentLength();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

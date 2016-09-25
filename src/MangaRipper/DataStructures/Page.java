@@ -5,6 +5,7 @@ package MangaRipper.DataStructures;
  */
 public class Page {
     public String url, name, imageUrl;
+    public int size = 0;
     public Page(String url, String name, String imageUrl) {
         this.url = url;
         this.name = name;

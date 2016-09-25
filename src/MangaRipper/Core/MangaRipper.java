@@ -24,6 +24,8 @@ public class MangaRipper extends JFrame {
         mangaRipper.add(mangaRipper.applicationPanel);
 
         mangaRipper.pack();
+        mangaRipper.setTitle("Manga Ripper");
+        mangaRipper.setResizable(false);
         mangaRipper.setDefaultCloseOperation(mangaRipper.EXIT_ON_CLOSE);
         mangaRipper.setLocationRelativeTo(null);
         mangaRipper.setVisible(true);
