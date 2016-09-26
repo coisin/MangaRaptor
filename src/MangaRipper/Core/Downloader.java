@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by oduibhir on 24/09/16.
@@ -42,7 +43,7 @@ public class Downloader {
             connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
             connection.connect();
 
-            File outputFile = new File("/home/oduibhir/Desktop/MangaTest/" + fileUrl.getFile());
+            File outputFile = new File(MangaRipper.mangaRipper.applicationPanel.getDestinationPath() + "/" + fileUrl.getFile());
             if(!outputFile.exists()) {
                 outputFile.getParentFile().mkdirs();
                 outputFile.createNewFile();

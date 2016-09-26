@@ -1,5 +1,6 @@
 package MangaRipper.Core;
 
+import MangaRipper.Core.GUI.CancellationToken;
 import MangaRipper.Core.GUI.ChaptersTable;
 import MangaRipper.Core.GUI.DownloadsTable;
 import MangaRipper.DataStructures.Chapter;
@@ -12,6 +13,7 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -24,8 +26,13 @@ public class ApplicationPanel extends JPanel {
 
     ArrayList<Service> services = new ArrayList();
 
-    JTextField seriesNameField;
+    JFileChooser destinationFolderChooser;
 
+    JTextField seriesNameField;
+    JTextField destinationFolderField;
+
+    JButton openFolderChooserButton;
+    JButton cancelDownloadButton;
     JButton addChaptersButton;
     JButton addToDownloadButton;
     JButton selectAllButton;
@@ -34,6 +41,7 @@ public class ApplicationPanel extends JPanel {
     ChaptersTable chaptersTable = new ChaptersTable();
     DownloadsTable downloadsTable = new DownloadsTable();
 
+    CancellationToken cancelTokenDownload;
     Service service;
 
     public ApplicationPanel() {
@@ -63,6 +71,34 @@ public class ApplicationPanel extends JPanel {
         topPanel.add(addChaptersButton);
 
         //Top Panel - End
+
+        //Center Panel - Start
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridBagLayout());
+        destinationFolderChooser = new JFileChooser();
+        destinationFolderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        destinationFolderField = new JTextField();
+        destinationFolderField.setColumns(20);
+
+        openFolderChooserButton = new JButton("Select Destination Folder");
+        openFolderChooserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int returnValue = destinationFolderChooser.showOpenDialog(null);
+                if(returnValue == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = destinationFolderChooser.getSelectedFile();
+                    destinationFolderField.setText(selectedFile.getAbsolutePath());
+                }
+            }
+        });
+
+        addToGrid(openFolderChooserButton, centerPanel, 0, 0, 1, 1, 0, 0, 10, 0);
+        addToGrid(destinationFolderField, centerPanel, 0, 1, 3, 1, 0, 0, 0, 0);
+
+        // Center Panel - End
+
         //Bottom Panel - Start
 
         JPanel bottomPanel = new JPanel();
@@ -100,7 +136,20 @@ public class ApplicationPanel extends JPanel {
                 download();
             }
         });
+
+        cancelTokenDownload = new CancellationToken();
+        cancelDownloadButton = new JButton("Cancel");
+        cancelDownloadButton.setEnabled(false);
+        cancelDownloadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cancelTokenDownload.cancel = true;
+                cancelDownloadButton.setEnabled(false);
+            }
+        });
+
         bottomRightPanel.add(downloadButton);
+        bottomRightPanel.add(cancelDownloadButton);
 
         bottomPanel.add(bottomLeftPanel);
         bottomPanel.add(bottomRightPanel);
@@ -111,6 +160,7 @@ public class ApplicationPanel extends JPanel {
 
         add(topPanel, BorderLayout.NORTH);
         add(chaptersTable.getPane(), BorderLayout.WEST);
+        add(centerPanel, BorderLayout.CENTER);
         add(downloadsTable.getPane(), BorderLayout.EAST);
         add(bottomPanel, BorderLayout.SOUTH);
 
@@ -118,6 +168,17 @@ public class ApplicationPanel extends JPanel {
 
         services.add(new MangaReader());
 
+    }
+
+    public void addToGrid(JComponent component, JPanel panel, int x, int y, int width, int height, int top, int right, int bottom, int left) {
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = x;
+        constraints.gridy = y;
+        constraints.gridwidth = width;
+        constraints.gridheight = height;
+        Insets insets = new Insets(top, left, bottom, right);
+        constraints.insets = insets;
+        panel.add(component, constraints);
     }
 
     public String refactorUrl(String url) {
@@ -155,6 +216,7 @@ public class ApplicationPanel extends JPanel {
     public void download() {
         new Thread(new Runnable() {
             public void run() {
+                cancelDownloadButton.setEnabled(true);
                 Downloader downloader = new Downloader();
                 ArrayList<Chapter> chapters = downloadsTable.getAsChapters();
                 for(Chapter chapter:chapters) {
@@ -163,16 +225,38 @@ public class ApplicationPanel extends JPanel {
                     for (Page page : pages) {
                         chapterSize += page.size;
                     }
+                    if(cancelTokenDownload.cancel) {
+                        stopDownload();
+                        return;
+                    }
                     chapter.size = (int) chapterSize;
                     double amountComplete = 0;
                     for (Page page : pages) {
                         downloader.downloadFile(page.imageUrl);
                         amountComplete += page.size;
-                        downloadsTable.updateProgress(amountComplete, chapterSize, 0);
+                        downloadsTable.updateProgress(amountComplete, chapterSize, chapters.indexOf(chapter));
+
+                        if(cancelTokenDownload.cancel) {
+                            stopDownload();
+                            return;
+                        }
+
                     }
                 }
+                cancelDownloadButton.setEnabled(false);
+                downloadButton.setEnabled(true);
             }
         }).start();
-        }
+        downloadButton.setEnabled(false);
+    }
+
+    public String getDestinationPath() {
+        return destinationFolderField.getText();
+    }
+
+    public void stopDownload() {
+        cancelDownloadButton.setEnabled(false);
+        downloadButton.setEnabled(true);
+    }
 
 }

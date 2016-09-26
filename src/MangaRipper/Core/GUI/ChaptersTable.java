@@ -19,13 +19,12 @@ public class ChaptersTable extends Table<Chapter> {
 
         super();
 
-        columnNames = new String[]{"Name", "Download"};
+        columnNames = new String[]{"Name"};
 
         model = new DefaultTableModel() {
             public Class getColumnClass(int column) {
                 switch(column) {
-                    case 0: return String.class;
-                    default: return Boolean.class;
+                    default: return String.class;
                 }
             }
         };
@@ -37,16 +36,8 @@ public class ChaptersTable extends Table<Chapter> {
 
     }
 
-    public void selectAll() {
-        int numRows = model.getRowCount();
-
-        for(int i = 0;i<numRows;i++) {
-            model.setValueAt(true, i, 1);
-        }
-    }
-
     public void addRow(Chapter row) {
-        Object[] rowData = {row.name, false};
+        Object[] rowData = {row.name};
         model.addRow(rowData);
         data.add(row);
     }
@@ -58,9 +49,23 @@ public class ChaptersTable extends Table<Chapter> {
         }
     }
 
+    public int getIndexInData(String value) {
+        for(int i = 0;i<data.size();i++) {
+            if(data.get(i).name.equals(value))return i;
+        }
+        return -1;
+    }
+
     public ArrayList<Chapter> getDownloads() {
         ArrayList<Chapter> chapters = new ArrayList();
-        ArrayList<Object[]> downloads = getResultsWhereColumnEquals(1, true);
+        int[] selectedRows = getSelectedRows();
+        Object[][] downloads = new Object[selectedRows.length][model.getColumnCount() + 1];
+        for(int i = 0;i<downloads.length;i++) {
+            for(int j = 0;j<model.getColumnCount();j++) {
+                downloads[i][j] = model.getValueAt(selectedRows[i], j);
+            }
+            downloads[i][model.getColumnCount()] = getIndexInData((String)downloads[i][0]);
+        }
 
         for(Object[] row:downloads) {
             chapters.add(data.get((Integer)row[model.getColumnCount()]));
