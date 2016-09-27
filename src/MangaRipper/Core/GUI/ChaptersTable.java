@@ -31,7 +31,6 @@ public class ChaptersTable extends Table<Chapter> {
         model.setColumnIdentifiers(columnNames);
         setModel(model);
 
-        pane = new JScrollPane(this);
         pane.setPreferredSize(new Dimension(300, 150));
 
     }

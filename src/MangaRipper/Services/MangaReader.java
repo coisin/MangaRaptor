@@ -4,6 +4,7 @@ import MangaRipper.Core.Downloader;
 import MangaRipper.Core.Parser;
 import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Page;
+import MangaRipper.DataStructures.Series;
 import MangaRipper.DataStructures.StringPair;
 
 import java.net.URL;
@@ -64,6 +65,20 @@ public class MangaReader extends Service {
         path = pair.two;
 
         return path;
+    }
+
+    public ArrayList<Series> getSeries(String query) {
+        ArrayList<Series> series = new ArrayList();
+        Downloader downloader = new Downloader();
+        String link = sitePath + "/search/?w=" + query.replaceAll(" ", "+");
+
+        String searchPage = downloader.getWebpageAsString(link);
+        String expression = "<div class=\"manga_name\">(.*?)<a href=\"(.*?)\">(.*?)</a>";
+        ArrayList<StringPair> pairs = Parser.parse(searchPage, expression, 2, 3);
+        for(StringPair pair:pairs) {
+            series.add(new Series(pair.two, sitePath + pair.one));
+        }
+        return series;
     }
 
 }

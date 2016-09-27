@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
-/**
+/**3
  * Created by oduibhir on 25/09/16.
  */
 public abstract class Table<E> extends JTable {
@@ -15,8 +15,10 @@ public abstract class Table<E> extends JTable {
 
     public ArrayList<E> data;
 
-    public Table() {
+    public Table()
+    {
         data = new ArrayList<E>();
+        pane = new JScrollPane(this);
     }
 
     public JScrollPane getPane() {
@@ -50,7 +52,26 @@ public abstract class Table<E> extends JTable {
         return getRowsWhereColumnEquals(data, colIndex, targetValue);
     }
 
-    abstract void addRow(E row);
     abstract void addManyRows(ArrayList<E> rows);
+    abstract void addRow(E row);
+
+    public void removeRow(int index) {
+        data.remove(index);
+        model.removeRow(index);
+    }
+
+    public void removeManySelectedRows() {
+        int selectedRow = getSelectedRow();
+        while(selectedRow >= 0) {
+            removeRow(selectedRow);
+            selectedRow = getSelectedRow();
+        }
+    }
+
+    public void removeAllRows() {
+        while(getRowCount() > 0) {
+            removeRow(0);
+        }
+    }
 
 }

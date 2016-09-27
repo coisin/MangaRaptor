@@ -3,8 +3,10 @@ package MangaRipper.Core;
 import MangaRipper.Core.GUI.CancellationToken;
 import MangaRipper.Core.GUI.ChaptersTable;
 import MangaRipper.Core.GUI.DownloadsTable;
+import MangaRipper.Core.GUI.SearchResultsTable;
 import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Page;
+import MangaRipper.DataStructures.Series;
 import MangaRipper.Services.MangaReader;
 import MangaRipper.Services.Service;
 
@@ -34,20 +36,39 @@ public class ApplicationPanel extends JPanel {
     JButton openFolderChooserButton;
     JButton cancelDownloadButton;
     JButton addChaptersButton;
+    JButton searchButton;
     JButton addToDownloadButton;
     JButton selectAllButton;
     JButton downloadButton;
+    JButton removeFromChaptersButton;
+    JButton removeFromDownloadsButton;
 
     ChaptersTable chaptersTable = new ChaptersTable();
     DownloadsTable downloadsTable = new DownloadsTable();
+    SearchResultsTable searchResultsTable = new SearchResultsTable();
+
+    CardLayout mainLayout = new CardLayout();
 
     CancellationToken cancelTokenDownload;
     Service service;
 
+    JPanel searchCard;
+    JPanel mainCard;
+
     public ApplicationPanel() {
 
         super();
-        setLayout(new BorderLayout());
+
+        //Instantiate Cards
+        searchCard = new JPanel();
+        searchCard.setLayout(new BorderLayout());
+
+        mainCard = new JPanel();
+        mainCard.setLayout(new BorderLayout());
+
+        //Instantiation End
+
+        setLayout(mainLayout);
 
         size = new Dimension(WIDTH, HEIGHT);
         setPreferredSize(size);
@@ -60,15 +81,16 @@ public class ApplicationPanel extends JPanel {
         seriesNameField = new JTextField();
         seriesNameField.setPreferredSize(new Dimension(600, 20));
 
-        addChaptersButton = new JButton("Add");
-        addChaptersButton.addActionListener(new ActionListener() {
+        searchButton = new JButton("Search");
+        searchButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                addChaptersFromSeries();
+                searchQuery();
             }
         });
 
         topPanel.add(seriesNameField);
-        topPanel.add(addChaptersButton);
+        topPanel.add(searchButton);
 
         //Top Panel - End
 
@@ -107,6 +129,14 @@ public class ApplicationPanel extends JPanel {
         JPanel bottomLeftPanel = new JPanel();
         bottomLeftPanel.setLayout(new FlowLayout());
 
+        removeFromChaptersButton = new JButton("Remove");
+        removeFromChaptersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chaptersTable.removeManySelectedRows();
+            }
+        });
+
         addToDownloadButton = new JButton("Add To Downloads");
         addToDownloadButton.addActionListener(new ActionListener() {
             @Override
@@ -123,11 +153,20 @@ public class ApplicationPanel extends JPanel {
             }
         });
 
+        bottomLeftPanel.add(removeFromChaptersButton);
         bottomLeftPanel.add(selectAllButton);
         bottomLeftPanel.add(addToDownloadButton);
 
         JPanel bottomRightPanel = new JPanel();
         bottomRightPanel.setLayout(new FlowLayout());
+
+        removeFromDownloadsButton = new JButton("Remove");
+        removeFromDownloadsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                downloadsTable.removeManySelectedRows();
+            }
+        });
 
         downloadButton = new JButton("Download");
         downloadButton.setEnabled(true);
@@ -150,24 +189,56 @@ public class ApplicationPanel extends JPanel {
 
         bottomRightPanel.add(downloadButton);
         bottomRightPanel.add(cancelDownloadButton);
+        bottomRightPanel.add(removeFromDownloadsButton);
 
         bottomPanel.add(bottomLeftPanel);
         bottomPanel.add(bottomRightPanel);
 
         //Bottom Panel - End
 
+        // Search Card - Start
+
+        JPanel searchCardCenter = new JPanel();
+        searchCardCenter.setLayout(new FlowLayout());
+
+        addChaptersButton = new JButton("Add");
+        addChaptersButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addAllSeries();
+            }
+        });
+
+        searchCardCenter.add(addChaptersButton);
+
+        searchCard.add(searchResultsTable.getPane(), BorderLayout.WEST);
+        searchCard.add(searchCardCenter, BorderLayout.CENTER);
+
+        // Search Card - End
+
         // Add To Application Panel
 
-        add(topPanel, BorderLayout.NORTH);
-        add(chaptersTable.getPane(), BorderLayout.WEST);
-        add(centerPanel, BorderLayout.CENTER);
-        add(downloadsTable.getPane(), BorderLayout.EAST);
-        add(bottomPanel, BorderLayout.SOUTH);
+        mainCard.add(topPanel, BorderLayout.NORTH);
+        mainCard.add(chaptersTable.getPane(), BorderLayout.WEST);
+        mainCard.add(centerPanel, BorderLayout.CENTER);
+        mainCard.add(downloadsTable.getPane(), BorderLayout.EAST);
+        mainCard.add(bottomPanel, BorderLayout.SOUTH);
+
+        //Add Cards To Layout
+
+        add(mainCard, "downloader-card");
+        add(searchCard, "searcher-card");
 
         // Add All Services to ArrayList
 
         services.add(new MangaReader());
 
+        //Set Card
+        switchCard("downloader-card");
+
+    }
+
+    public void switchCard(String name) {
+        mainLayout.show(this, name);
     }
 
     public void addToGrid(JComponent component, JPanel panel, int x, int y, int width, int height, int top, int right, int bottom, int left) {
@@ -197,15 +268,25 @@ public class ApplicationPanel extends JPanel {
         }
     }
 
-    public void addChaptersFromSeries() {
+    public void addAllSeries() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<Series> series = searchResultsTable.getCheckedSeries();
+                for(Series i:series) {
+                    addChaptersFromSeries(i);
+                }
+                switchCard("downloader-card");
+            }
+        }).start();
+    }
 
-        String url = refactorUrl(seriesNameField.getText());
+    public void addChaptersFromSeries(Series i) {
+        String url = refactorUrl(i.link);
         setServices(url);
-
         ArrayList<Chapter> chapters = service.getChapters(url);
-
         chaptersTable.addManyRows(chapters);
-
+        searchResultsTable.removeAllRows();
     }
 
     public void addDownloads() {
@@ -216,47 +297,53 @@ public class ApplicationPanel extends JPanel {
     public void download() {
         new Thread(new Runnable() {
             public void run() {
+
                 cancelDownloadButton.setEnabled(true);
+                downloadButton.setEnabled(false);
+
                 Downloader downloader = new Downloader();
                 ArrayList<Chapter> chapters = downloadsTable.getAsChapters();
+
                 for(Chapter chapter:chapters) {
-                    double chapterSize = 0;
-                    ArrayList<Page> pages = service.getPages(chapter);
-                    for (Page page : pages) {
-                        chapterSize += page.size;
-                    }
+                    downloader.downloadChapter(chapter, chapters.indexOf(chapter), chapter.name, cancelTokenDownload);
                     if(cancelTokenDownload.cancel) {
-                        stopDownload();
+                        stopDownloading();
                         return;
                     }
-                    chapter.size = (int) chapterSize;
-                    double amountComplete = 0;
-                    for (Page page : pages) {
-                        downloader.downloadFile(page.imageUrl);
-                        amountComplete += page.size;
-                        downloadsTable.updateProgress(amountComplete, chapterSize, chapters.indexOf(chapter));
-
-                        if(cancelTokenDownload.cancel) {
-                            stopDownload();
-                            return;
-                        }
-
-                    }
                 }
-                cancelDownloadButton.setEnabled(false);
-                downloadButton.setEnabled(true);
+
+                stopDownloading();
+
             }
         }).start();
-        downloadButton.setEnabled(false);
+    }
+
+    public Service getService() {
+        return service;
     }
 
     public String getDestinationPath() {
         return destinationFolderField.getText();
     }
 
-    public void stopDownload() {
+    public void stopDownloading() {
         cancelDownloadButton.setEnabled(false);
         downloadButton.setEnabled(true);
+    }
+
+    public void searchQuery() {
+        String seriesName = seriesNameField.getText();
+        ArrayList<Series> series = new ArrayList();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(Service service:services) {
+                    series.addAll(service.getSeries(seriesName));
+                }
+                searchResultsTable.addManyRows(series);
+                switchCard("searcher-card");
+            }
+        }).start();
     }
 
 }

@@ -12,8 +12,10 @@ import java.util.ArrayList;
  */
 public class DownloadsTable extends Table<Chapter> {
 
-    public DownloadsTable() {
+    Chapter currentChapter = null;
+    int downloadIndex = -1;
 
+    public DownloadsTable() {
         super();
 
         columnNames = new String[] {"Name", "Link", "Progress"};
@@ -30,8 +32,6 @@ public class DownloadsTable extends Table<Chapter> {
         model.setColumnIdentifiers(columnNames);
         setModel(model);
 
-        pane = new JScrollPane(this);
-
         getColumn("Progress").setCellRenderer(new progressBar());
     }
 
@@ -47,9 +47,15 @@ public class DownloadsTable extends Table<Chapter> {
         }
     }
 
-    public void updateProgress(double complete, double total, int row) {
-        double percentageComplete = (complete / total) * 100D;
-        setValueAt((int)percentageComplete, row, 2);
+    public void setCurrentChapter(Chapter chapter, int index) {
+        currentChapter = chapter;
+        downloadIndex = index;
+    }
+
+    public void updateProgress(int increase) {
+        int percentageComplete = (int)getValueAt(downloadIndex, 2);
+        percentageComplete += (int)(((double)increase / (double)currentChapter.size) * 100);
+        setValueAt(percentageComplete, downloadIndex, 2);
     }
 
     public ArrayList<Chapter> getAsChapters() {

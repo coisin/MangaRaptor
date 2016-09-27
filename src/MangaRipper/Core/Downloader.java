@@ -1,6 +1,11 @@
 package MangaRipper.Core;
 
+import MangaRipper.Core.GUI.CancellationToken;
+import MangaRipper.Core.GUI.ChaptersTable;
+import MangaRipper.Core.GUI.DownloadsTable;
+import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Page;
+import MangaRipper.Services.Service;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -13,6 +18,8 @@ import java.util.Map;
  * Created by oduibhir on 24/09/16.
  */
 public class Downloader {
+
+    ApplicationPanel panel = MangaRipper.mangaRipper.applicationPanel;
 
     public Downloader() {
 
@@ -36,34 +43,57 @@ public class Downloader {
         return page;
     }
 
-    public void downloadFile(String filePath) {
+    public void downloadFile(String filePath, String fileName) {
         try {
-            URL fileUrl = new URL(filePath);
-            URLConnection connection = fileUrl.openConnection();
+            URL url = new URL(filePath);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-            connection.connect();
+            InputStream inputStream = connection.getInputStream();
 
-            File outputFile = new File(MangaRipper.mangaRipper.applicationPanel.getDestinationPath() + "/" + fileUrl.getFile());
+            File outputFile = new File(panel.getDestinationPath() + "/" + fileName);
             if(!outputFile.exists()) {
                 outputFile.getParentFile().mkdirs();
-                outputFile.createNewFile();
             }
-            InputStream input = connection.getInputStream();
-            FileOutputStream output = new FileOutputStream(outputFile);
-            int len = 0;
+            OutputStream outputStream = new FileOutputStream(outputFile);
+
             byte[] buff = new byte[150];
-            while((len = input.read(buff, 0, buff.length)) != -1) {
-                output.write(buff, 0, len);
+            int len = 0;
+            while((len = inputStream.read(buff, 0, buff.length)) != -1) {
+                outputStream.write(buff, 0, len);
             }
+
+            inputStream.close();
+            outputStream.close();
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void downloadPages(ArrayList<Page> pages) {
+    public void downloadChapter(Chapter chapter, int index, String fileName, CancellationToken token) {
+        Service service = panel.getService();
+        ArrayList<Page> pages = service.getPages(chapter);
+        chapter.size = getPagesSize(pages);
+        panel.downloadsTable.setCurrentChapter(chapter, index);
+        downloadPages(pages, fileName, token);
+    }
+
+    public void downloadPages(ArrayList<Page> pages, String fileName, CancellationToken token) {
         for(Page page : pages) {
-            downloadFile(page.imageUrl);
+            downloadFile(page.imageUrl, fileName + "/" + page.name);
+            panel.downloadsTable.updateProgress(page.size);
+            if(token.cancel) {
+                panel.stopDownloading();
+                return;
+            }
         }
+    }
+
+    public int getPagesSize(ArrayList<Page> pages) {
+        int size = 0;
+        for(Page page:pages) {
+            size += page.size;
+        }
+        return size;
     }
 
     public int getFileSize(String path) {
