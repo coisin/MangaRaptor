@@ -22,7 +22,7 @@ public class Downloader {
     ApplicationPanel panel = MangaRipper.mangaRipper.applicationPanel;
 
     public Downloader() {
-
+    	
     }
 
     public String getWebpageAsString(String link) {
@@ -68,7 +68,7 @@ public class Downloader {
             e.printStackTrace();
         }
     }
-
+    
     public void downloadChapter(Chapter chapter, int index, String fileName, CancellationToken token) {
         Service service = panel.getService();
         ArrayList<Page> pages = service.getPages(chapter);
@@ -79,7 +79,7 @@ public class Downloader {
 
     public void downloadPages(ArrayList<Page> pages, String fileName, CancellationToken token) {
         for(Page page : pages) {
-            downloadFile(page.imageUrl, fileName + "/" + page.name);
+            downloadFile(page.imageUrl, fileName + "/" + page.name + page.extension);
             panel.downloadsTable.updateProgress(page.size);
             if(token.cancel) {
                 panel.stopDownloading();

@@ -42,6 +42,7 @@ public class ApplicationPanel extends JPanel {
     JButton downloadButton;
     JButton removeFromChaptersButton;
     JButton removeFromDownloadsButton;
+    JButton backButton;
 
     ChaptersTable chaptersTable = new ChaptersTable();
     DownloadsTable downloadsTable = new DownloadsTable();
@@ -207,8 +208,17 @@ public class ApplicationPanel extends JPanel {
                 addAllSeries();
             }
         });
+        
+        backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		searchResultsTable.removeAllRows();
+        		switchCard("downloader-card");
+        	}
+        });
 
         searchCardCenter.add(addChaptersButton);
+        searchCardCenter.add(backButton);
 
         searchCard.add(searchResultsTable.getPane(), BorderLayout.WEST);
         searchCard.add(searchCardCenter, BorderLayout.CENTER);

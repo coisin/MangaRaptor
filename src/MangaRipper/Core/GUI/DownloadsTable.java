@@ -54,7 +54,7 @@ public class DownloadsTable extends Table<Chapter> {
 
     public void updateProgress(int increase) {
         int percentageComplete = (int)getValueAt(downloadIndex, 2);
-        percentageComplete += (int)(((double)increase / (double)currentChapter.size) * 100);
+        percentageComplete += (int)Math.ceil(((double)increase / (double)currentChapter.size) * 100);
         setValueAt(percentageComplete, downloadIndex, 2);
     }
 

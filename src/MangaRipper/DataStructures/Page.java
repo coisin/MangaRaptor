@@ -6,7 +6,9 @@ package MangaRipper.DataStructures;
 public class Page {
     public String url, name, imageUrl;
     public int size = 0;
-    public Page(String url, String name, String imageUrl) {
+    public String extension;
+    public Page(String url, String name, String imageUrl, String ext) {
+    	extension = ext;
         this.url = url;
         this.name = name;
         this.imageUrl = imageUrl;

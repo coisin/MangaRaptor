@@ -24,7 +24,7 @@ public class MangaReader extends Service {
         Downloader downloader = new Downloader();
         ArrayList<Chapter> chapters = new ArrayList();
 
-        String seriesPage = downloader.getWebpageAsString(path);
+        String seriesPage = Parser.parse(downloader.getWebpageAsString(path), "<table id=\"listing\">(.*?)</table>(.*)", 1, 2).get(0).one;
         String expression = "<a href=(\"|')(.*?)(\"|')>(.*?)</a>";
         ArrayList<StringPair> chapterPair = Parser.parse(seriesPage, expression, 2, 4);
         for(StringPair pair:chapterPair) {
@@ -46,7 +46,9 @@ public class MangaReader extends Service {
 
         for(StringPair pair:pagePair) {
             String pagePath = sitePath + pair.one;
-            Page page = new Page(pagePath, pair.two, getImagePath(pagePath));
+            System.out.println(pair.two);
+            String imagePath = getImagePath(pagePath);
+            Page page = new Page(pagePath, pair.two, imagePath, imagePath.substring(imagePath.lastIndexOf(".")));
             page.size = downloader.getFileSize(pagePath);
             pages.add(page);
         }
