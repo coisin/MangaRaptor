@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 /**
@@ -28,8 +29,10 @@ public class Downloader {
         try {
             URL url = new URL(link);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+            connection.connect();
             InputStream input = connection.getInputStream();
-            BufferedReader inputReader = new BufferedReader(new InputStreamReader(input));
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(input, Charset.forName("UTF-8")));
             String line;
             while((line = inputReader.readLine()) != null) {
                 page += line;

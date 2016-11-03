@@ -18,7 +18,7 @@ public class Parser {
         Matcher matches = pattern.matcher(original);
         ArrayList values = new ArrayList();
         while(matches.find()) {
-            values.add(new StringPair(matches.group(indexOfFirst), matches.group(indexOfSecond)));
+            values.add(new StringPair(matches.group(indexOfFirst), indexOfSecond == -1 ? "-":matches.group(indexOfSecond)));
         }
         return values;
     }

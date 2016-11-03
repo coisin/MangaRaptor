@@ -5,6 +5,7 @@ import MangaRipper.Core.GUI.CancellationToken;
 import MangaRipper.Core.GUI.progressBar;
 import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Series;
+import MangaRipper.Services.Manga3;
 import MangaRipper.Services.MangaReader;
 import MangaRipper.Services.Service;
 
@@ -60,9 +61,13 @@ public class ApplicationPanel extends JPanel {
 
         chaptersTable.avoidColumn("size");
         chaptersTable.avoidColumn("progress");
+        chaptersTable.setPaneSize(350, 400);
 
         downloadsTable.avoidColumn("size");
         downloadsTable.getColumn("progress").setCellRenderer(new progressBar());
+        downloadsTable.setPaneSize(400, 400);
+
+        searchResultsTable.setPaneSize(600, 400);
 
         //Instantiate Cards
         searchCard = new JPanel();
@@ -245,6 +250,7 @@ public class ApplicationPanel extends JPanel {
         // Add All Services to ArrayList
 
         services.add(new MangaReader());
+        services.add(new Manga3());
 
         //Set Card
         switchCard("downloader-card");
