@@ -46,7 +46,6 @@ public class MangaReader extends Service {
 
         for(StringPair pair:pagePair) {
             String pagePath = sitePath + pair.one;
-            System.out.println(pair.two);
             String imagePath = getImagePath(pagePath);
             Page page = new Page(pagePath, pair.two, imagePath, imagePath.substring(imagePath.lastIndexOf(".")));
             page.size = downloader.getFileSize(pagePath);

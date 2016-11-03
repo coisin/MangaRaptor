@@ -1,8 +1,6 @@
 package MangaRipper.Core;
 
 import MangaRipper.Core.GUI.CancellationToken;
-import MangaRipper.Core.GUI.ChaptersTable;
-import MangaRipper.Core.GUI.DownloadsTable;
 import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Page;
 import MangaRipper.Services.Service;
@@ -12,7 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Created by oduibhir on 24/09/16.
@@ -68,24 +65,36 @@ public class Downloader {
             e.printStackTrace();
         }
     }
-    
+
+    Chapter currentChapterDownloading;
+    int currentChapterDownloadingIndex;
+
     public void downloadChapter(Chapter chapter, int index, String fileName, CancellationToken token) {
         Service service = panel.getService();
         ArrayList<Page> pages = service.getPages(chapter);
         chapter.size = getPagesSize(pages);
-        panel.downloadsTable.setCurrentChapter(chapter, index);
+        currentChapterDownloading = chapter;
+        currentChapterDownloadingIndex = index;
         downloadPages(pages, fileName, token);
     }
 
     public void downloadPages(ArrayList<Page> pages, String fileName, CancellationToken token) {
         for(Page page : pages) {
             downloadFile(page.imageUrl, fileName + "/" + page.name + page.extension);
-            panel.downloadsTable.updateProgress(page.size);
+            updateProgress(page.size);
             if(token.cancel) {
                 panel.stopDownloading();
                 return;
             }
         }
+    }
+
+    public void updateProgress(int pageSize) {
+        int totalSize = currentChapterDownloading.size;
+        double percentagePageCompletes = ((double)pageSize / (double)totalSize) * 100.00;
+        currentChapterDownloading.progress += percentagePageCompletes;
+        panel.downloadsTable.update(currentChapterDownloading);
+
     }
 
     public int getPagesSize(ArrayList<Page> pages) {

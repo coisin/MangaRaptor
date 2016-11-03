@@ -11,13 +11,14 @@ public class progressBar extends JProgressBar implements TableCellRenderer {
 
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
-        int progress = 0;
+        double progress = 0;
         if (value instanceof Float) {
             progress = Math.round(((Float) value) * 100f);
-        } else if (value instanceof Integer) {
-            progress = (int)value;
+        } else if (value instanceof Double) {
+            progress = (double)value;
         }
-        setValue(progress);
+        System.out.println(value);
+        setValue((int)Math.ceil(progress));
         return this;
 
     }

@@ -1,18 +1,16 @@
 package MangaRipper.Core;
 
+import Core.Table;
 import MangaRipper.Core.GUI.CancellationToken;
-import MangaRipper.Core.GUI.ChaptersTable;
-import MangaRipper.Core.GUI.DownloadsTable;
-import MangaRipper.Core.GUI.SearchResultsTable;
+import MangaRipper.Core.GUI.progressBar;
 import MangaRipper.DataStructures.Chapter;
-import MangaRipper.DataStructures.Page;
 import MangaRipper.DataStructures.Series;
 import MangaRipper.Services.MangaReader;
 import MangaRipper.Services.Service;
 
 import javax.swing.*;
-import javax.swing.table.*;
 import java.awt.*;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -44,9 +42,9 @@ public class ApplicationPanel extends JPanel {
     JButton removeFromDownloadsButton;
     JButton backButton;
 
-    ChaptersTable chaptersTable = new ChaptersTable();
-    DownloadsTable downloadsTable = new DownloadsTable();
-    SearchResultsTable searchResultsTable = new SearchResultsTable();
+    Table<Chapter> chaptersTable = new Table(Chapter.class);
+    Table<Chapter> downloadsTable = new Table(Chapter.class);
+    Table<Series> searchResultsTable = new Table(Series.class);
 
     CardLayout mainLayout = new CardLayout();
 
@@ -59,6 +57,12 @@ public class ApplicationPanel extends JPanel {
     public ApplicationPanel() {
 
         super();
+
+        chaptersTable.avoidColumn("size");
+        chaptersTable.avoidColumn("progress");
+
+        downloadsTable.avoidColumn("size");
+        downloadsTable.getColumn("progress").setCellRenderer(new progressBar());
 
         //Instantiate Cards
         searchCard = new JPanel();
@@ -134,7 +138,7 @@ public class ApplicationPanel extends JPanel {
         removeFromChaptersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                chaptersTable.removeManySelectedRows();
+                chaptersTable.removeAllRows();
             }
         });
 
@@ -165,7 +169,7 @@ public class ApplicationPanel extends JPanel {
         removeFromDownloadsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                downloadsTable.removeManySelectedRows();
+                downloadsTable.removeHighlightedRows();
             }
         });
 
@@ -220,7 +224,7 @@ public class ApplicationPanel extends JPanel {
         searchCardCenter.add(addChaptersButton);
         searchCardCenter.add(backButton);
 
-        searchCard.add(searchResultsTable.getPane(), BorderLayout.WEST);
+        searchCard.add(searchResultsTable.getScrollPane(), BorderLayout.WEST);
         searchCard.add(searchCardCenter, BorderLayout.CENTER);
 
         // Search Card - End
@@ -228,9 +232,9 @@ public class ApplicationPanel extends JPanel {
         // Add To Application Panel
 
         mainCard.add(topPanel, BorderLayout.NORTH);
-        mainCard.add(chaptersTable.getPane(), BorderLayout.WEST);
+        mainCard.add(chaptersTable.getScrollPane(), BorderLayout.WEST);
         mainCard.add(centerPanel, BorderLayout.CENTER);
-        mainCard.add(downloadsTable.getPane(), BorderLayout.EAST);
+        mainCard.add(downloadsTable.getScrollPane(), BorderLayout.EAST);
         mainCard.add(bottomPanel, BorderLayout.SOUTH);
 
         //Add Cards To Layout
@@ -282,7 +286,7 @@ public class ApplicationPanel extends JPanel {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                ArrayList<Series> series = searchResultsTable.getCheckedSeries();
+                List<Series> series = searchResultsTable.getHighlightedRows();
                 for(Series i:series) {
                     addChaptersFromSeries(i);
                 }
@@ -300,7 +304,7 @@ public class ApplicationPanel extends JPanel {
     }
 
     public void addDownloads() {
-        ArrayList<Chapter> chapters = chaptersTable.getDownloads();
+        List<Chapter> chapters = chaptersTable.getHighlightedRows();
         downloadsTable.addManyRows(chapters);
     }
 
@@ -312,7 +316,7 @@ public class ApplicationPanel extends JPanel {
                 downloadButton.setEnabled(false);
 
                 Downloader downloader = new Downloader();
-                ArrayList<Chapter> chapters = downloadsTable.getAsChapters();
+                List<Chapter> chapters = downloadsTable.getData();
 
                 for(Chapter chapter:chapters) {
                     downloader.downloadChapter(chapter, chapters.indexOf(chapter), chapter.name, cancelTokenDownload);
