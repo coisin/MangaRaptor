@@ -11,6 +11,7 @@ import MangaRipper.Services.Service;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,7 +46,9 @@ public class ApplicationPanel extends JPanel {
 
     Table<Chapter> chaptersTable = new Table(Chapter.class);
     Table<Chapter> downloadsTable = new Table(Chapter.class);
-    Table<Series> searchResultsTable = new Table(Series.class);
+
+    Table<Series> mangaReaderResultsTable = new Table<Series>(Series.class);
+    Table<Series> manga3ResultsTable = new Table<Series>(Series.class);
 
     CardLayout mainLayout = new CardLayout();
 
@@ -54,6 +57,8 @@ public class ApplicationPanel extends JPanel {
 
     JPanel searchCard;
     JPanel mainCard;
+
+    HashMap<Service, Table> serviceToTable = new HashMap<Service, Table>();
 
     public ApplicationPanel() {
 
@@ -66,8 +71,6 @@ public class ApplicationPanel extends JPanel {
         downloadsTable.avoidColumn("size");
         downloadsTable.getColumn("progress").setCellRenderer(new progressBar());
         downloadsTable.setPaneSize(400, 400);
-
-        searchResultsTable.setPaneSize(600, 400);
 
         //Instantiate Cards
         searchCard = new JPanel();
@@ -95,6 +98,7 @@ public class ApplicationPanel extends JPanel {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                searchButton.setEnabled(false);
                 searchQuery();
             }
         });
@@ -221,7 +225,7 @@ public class ApplicationPanel extends JPanel {
         backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		searchResultsTable.removeAllRows();
+        		removeAllSearchRows();
         		switchCard("downloader-card");
         	}
         });
@@ -229,7 +233,14 @@ public class ApplicationPanel extends JPanel {
         searchCardCenter.add(addChaptersButton);
         searchCardCenter.add(backButton);
 
-        searchCard.add(searchResultsTable.getScrollPane(), BorderLayout.WEST);
+        mangaReaderResultsTable.setPaneSize(700, 400);
+        manga3ResultsTable.setPaneSize(700, 400);
+
+        JTabbedPane serviceTabs = new JTabbedPane();
+        serviceTabs.add("MangaReader", mangaReaderResultsTable.getScrollPane());
+        serviceTabs.add("Manga3", manga3ResultsTable.getScrollPane());
+
+        searchCard.add(serviceTabs, BorderLayout.WEST);
         searchCard.add(searchCardCenter, BorderLayout.CENTER);
 
         // Search Card - End
@@ -249,12 +260,34 @@ public class ApplicationPanel extends JPanel {
 
         // Add All Services to ArrayList
 
-        services.add(new MangaReader());
-        services.add(new Manga3());
+        MangaReader mangaReader = new MangaReader();
+        Manga3 manga3 = new Manga3();
+
+        services.add(mangaReader);
+        services.add(manga3);
+
+        // Match Search Tables To Services
+
+        serviceToTable.put(mangaReader, mangaReaderResultsTable);
+        serviceToTable.put(manga3, manga3ResultsTable);
 
         //Set Card
         switchCard("downloader-card");
 
+    }
+
+    public void removeAllSearchRows() {
+        for(Service service:services) {
+            serviceToTable.get(service).removeAllRows();
+        }
+    }
+
+    public List<Series> getHighlightedSearchRows() {
+        List<Series> series = new ArrayList<Series>();
+        for(Service service:services) {
+            series.addAll(serviceToTable.get(service).getHighlightedRows());
+        }
+        return series;
     }
 
     public void switchCard(String name) {
@@ -292,7 +325,7 @@ public class ApplicationPanel extends JPanel {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<Series> series = searchResultsTable.getHighlightedRows();
+                List<Series> series = getHighlightedSearchRows();
                 for(Series i:series) {
                     addChaptersFromSeries(i);
                 }
@@ -305,7 +338,7 @@ public class ApplicationPanel extends JPanel {
         setServices(i.link);
         ArrayList<Chapter> chapters = service.getChapters(i);
         chaptersTable.addManyRows(chapters);
-        searchResultsTable.removeAllRows();
+        removeAllSearchRows();
     }
 
     public void addDownloads() {
@@ -361,14 +394,15 @@ public class ApplicationPanel extends JPanel {
 
     public void searchQuery() {
         String seriesName = seriesNameField.getText();
-        ArrayList<Series> series = new ArrayList();
         new Thread(new Runnable() {
             @Override
             public void run() {
+                ArrayList<Series> series;
                 for(Service service:services) {
-                    series.addAll(service.getSeries(seriesName));
+                    series = service.getSeries(seriesName);
+                    serviceToTable.get(service).addManyRows(series);
                 }
-                searchResultsTable.addManyRows(series);
+                searchButton.setEnabled(true);
                 switchCard("searcher-card");
             }
         }).start();
