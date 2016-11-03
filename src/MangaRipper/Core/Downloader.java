@@ -74,7 +74,10 @@ public class Downloader {
 
     public void downloadChapter(Chapter chapter, int index, String fileName, CancellationToken token) {
         Service service = panel.getService();
-        ArrayList<Page> pages = service.getPages(chapter);
+        ArrayList<Page> pages = service.getPages(chapter, token);
+        if(pages == null) {
+            return;
+        }
         chapter.size = getPagesSize(pages);
         currentChapterDownloading = chapter;
         currentChapterDownloadingIndex = index;
@@ -86,7 +89,6 @@ public class Downloader {
             downloadFile(page.imageUrl, fileName + "/" + page.name + page.extension);
             updateProgress(page.size);
             if(token.cancel) {
-                panel.stopDownloading();
                 return;
             }
         }

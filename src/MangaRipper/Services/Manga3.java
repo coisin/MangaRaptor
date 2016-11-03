@@ -1,6 +1,7 @@
 package MangaRipper.Services;
 
 import MangaRipper.Core.Downloader;
+import MangaRipper.Core.GUI.CancellationToken;
 import MangaRipper.Core.Parser;
 import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Page;
@@ -63,7 +64,7 @@ public class Manga3 extends Service {
         return chapters;
     }
 
-    public ArrayList<Page> getPages(Chapter chapter) {
+    public ArrayList<Page> getPages(Chapter chapter, CancellationToken token) {
         ArrayList<Page> pages = new ArrayList<Page>();
         Downloader downloader = new Downloader();
 
@@ -73,6 +74,11 @@ public class Manga3 extends Service {
         exp = "<option value=\"(.*?)\"(.*?)>(.*?)</option>";
         ArrayList<StringPair> rowInfos = Parser.parse(chapterSite, exp, 1, 3);
         for(StringPair rowInfo:rowInfos) {
+
+            if(token.cancel) {
+                return null;
+            }
+
             String link = sitePath + rowInfo.one;
             String name = rowInfo.two;
 

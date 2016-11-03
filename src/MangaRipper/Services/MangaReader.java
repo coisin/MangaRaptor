@@ -1,6 +1,7 @@
 package MangaRipper.Services;
 
 import MangaRipper.Core.Downloader;
+import MangaRipper.Core.GUI.CancellationToken;
 import MangaRipper.Core.Parser;
 import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Page;
@@ -36,7 +37,7 @@ public class MangaReader extends Service {
         return chapters;
     }
 
-    public ArrayList<Page> getPages(Chapter chapter) {
+    public ArrayList<Page> getPages(Chapter chapter, CancellationToken token) {
         Downloader downloader = new Downloader();
         ArrayList<Page> pages = new ArrayList();
         String expression = "<option value=\"(.*?)\"(.*?)>(.*?)</option>";
@@ -45,6 +46,11 @@ public class MangaReader extends Service {
         ArrayList<StringPair> pagePair = Parser.parse(chapterPage, expression, 1, 3);
 
         for(StringPair pair:pagePair) {
+
+            if(token.cancel) {
+                return null;
+            }
+
             String pagePath = sitePath + pair.one;
             String imagePath = getImagePath(pagePath);
             Page page = new Page(pagePath, pair.two, imagePath, imagePath.substring(imagePath.lastIndexOf(".")));

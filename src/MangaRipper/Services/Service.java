@@ -1,5 +1,6 @@
 package MangaRipper.Services;
 
+import MangaRipper.Core.GUI.CancellationToken;
 import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Page;
 import MangaRipper.DataStructures.Series;
@@ -12,6 +13,6 @@ import java.util.ArrayList;
 public abstract class Service {
     public String sitePath;
     public abstract ArrayList<Chapter> getChapters(Series series);
-    public abstract ArrayList<Page> getPages(Chapter chapter);
+    public abstract ArrayList<Page> getPages(Chapter chapter, CancellationToken token);
     public abstract ArrayList<Series> getSeries(String query);
 }

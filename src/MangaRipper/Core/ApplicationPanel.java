@@ -43,6 +43,8 @@ public class ApplicationPanel extends JPanel {
     JButton removeFromChaptersButton;
     JButton removeFromDownloadsButton;
     JButton backButton;
+    JButton clearChaptersTable;
+    JButton clearDownloadsTable;
 
     Table<Chapter> chaptersTable = new Table(Chapter.class);
     Table<Chapter> downloadsTable = new Table(Chapter.class);
@@ -167,6 +169,15 @@ public class ApplicationPanel extends JPanel {
             }
         });
 
+        clearChaptersTable = new JButton("Clear");
+        clearChaptersTable.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                chaptersTable.removeAllRows();
+            }
+        });
+
+        bottomLeftPanel.add(clearChaptersTable);
         bottomLeftPanel.add(removeFromChaptersButton);
         bottomLeftPanel.add(selectAllButton);
         bottomLeftPanel.add(addToDownloadButton);
@@ -201,8 +212,17 @@ public class ApplicationPanel extends JPanel {
             }
         });
 
+        clearDownloadsTable = new JButton("Clear");
+        clearDownloadsTable.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                downloadsTable.removeAllRows();
+            }
+        });
+
         bottomRightPanel.add(downloadButton);
         bottomRightPanel.add(cancelDownloadButton);
+        bottomRightPanel.add(clearDownloadsTable);
         bottomRightPanel.add(removeFromDownloadsButton);
 
         bottomPanel.add(bottomLeftPanel);
@@ -218,6 +238,7 @@ public class ApplicationPanel extends JPanel {
         addChaptersButton = new JButton("Add");
         addChaptersButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                addChaptersButton.setEnabled(false);
                 addAllSeries();
             }
         });
@@ -305,13 +326,6 @@ public class ApplicationPanel extends JPanel {
         panel.add(component, constraints);
     }
 
-    public String refactorUrl(String url) {
-        if(!url.startsWith("http://") && !url.startsWith("https://")) {
-            url = "http://" + url;
-        }
-        return url;
-    }
-
     public void setServices(String url) {
         for(Service service:services) {
             if(url.startsWith(service.sitePath)) {
@@ -330,6 +344,7 @@ public class ApplicationPanel extends JPanel {
                     addChaptersFromSeries(i);
                 }
                 switchCard("downloader-card");
+                addChaptersButton.setEnabled(true);
             }
         }).start();
     }
@@ -359,14 +374,18 @@ public class ApplicationPanel extends JPanel {
                 removeFromDownloadsButton.setEnabled(false);
                 addToDownloadButton.setEnabled(false);
                 downloadButton.setEnabled(false);
+                clearDownloadsTable.setEnabled(false);
 
                 Downloader downloader = new Downloader();
                 List<Chapter> chapters = downloadsTable.getData();
+
+                cancelTokenDownload = new CancellationToken();
 
                 for(Chapter chapter:chapters) {
                     downloader.downloadChapter(chapter, chapters.indexOf(chapter), chapter.name, cancelTokenDownload);
                     if(cancelTokenDownload.cancel) {
                         stopDownloading();
+                        cancelTokenDownload = null;
                         return;
                     }
                 }
@@ -390,6 +409,7 @@ public class ApplicationPanel extends JPanel {
         removeFromDownloadsButton.setEnabled(true);
         addToDownloadButton.setEnabled(true);
         downloadButton.setEnabled(true);
+        clearDownloadsTable.setEnabled(true);
     }
 
     public void searchQuery() {
