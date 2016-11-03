@@ -39,11 +39,11 @@ public class Manga3 extends Service {
         return series;
     }
 
-    public ArrayList<Chapter> getChapters(String seriesPath) {
+    public ArrayList<Chapter> getChapters(Series series) {
         Downloader downloader = new Downloader();
         ArrayList<Chapter> chapters = new ArrayList<Chapter>();
 
-        String seriesSite = downloader.getWebpageAsString(seriesPath);
+        String seriesSite = downloader.getWebpageAsString(series.link);
         String exp = "Manga Chapters(.*)";
         seriesSite = Parser.parse(seriesSite, exp, 1, -1).get(0).one;
         exp = "<a href=\"(.*?)\">(.*?)</a>";

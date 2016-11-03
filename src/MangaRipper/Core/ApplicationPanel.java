@@ -302,9 +302,8 @@ public class ApplicationPanel extends JPanel {
     }
 
     public void addChaptersFromSeries(Series i) {
-        String url = refactorUrl(i.link);
-        setServices(url);
-        ArrayList<Chapter> chapters = service.getChapters(url);
+        setServices(i.link);
+        ArrayList<Chapter> chapters = service.getChapters(i);
         chaptersTable.addManyRows(chapters);
         searchResultsTable.removeAllRows();
     }
@@ -315,10 +314,17 @@ public class ApplicationPanel extends JPanel {
     }
 
     public void download() {
+
+        if(getDestinationPath().equals("") || getDestinationPath() == null) {
+            return;
+        }
+
         new Thread(new Runnable() {
             public void run() {
 
                 cancelDownloadButton.setEnabled(true);
+                removeFromDownloadsButton.setEnabled(false);
+                addToDownloadButton.setEnabled(false);
                 downloadButton.setEnabled(false);
 
                 Downloader downloader = new Downloader();
@@ -348,6 +354,8 @@ public class ApplicationPanel extends JPanel {
 
     public void stopDownloading() {
         cancelDownloadButton.setEnabled(false);
+        removeFromDownloadsButton.setEnabled(true);
+        addToDownloadButton.setEnabled(true);
         downloadButton.setEnabled(true);
     }
 

@@ -19,8 +19,8 @@ public class MangaReader extends Service {
         sitePath = "http://www.mangareader.net";
     }
 
-    public ArrayList<Chapter> getChapters(String seriesName) {
-        String path = /*sitePath + "/" + */seriesName;
+    public ArrayList<Chapter> getChapters(Series series) {
+        String path = series.link;
         Downloader downloader = new Downloader();
         ArrayList<Chapter> chapters = new ArrayList();
 

@@ -7,27 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b40a2c3d-26f3-41f1-b276-23068311fdba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$1.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$10.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$11.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$2.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$3.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$4.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$5.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$6.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$7.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$8.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$9.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$9.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/Downloader.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/Downloader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/MangaReader.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/MangaReader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/Service.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/Service.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/Parser.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Core/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/DataStructures/Chapter.java" afterPath="$PROJECT_DIR$/src/MangaRipper/DataStructures/Chapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/DataStructures/Series.java" afterPath="$PROJECT_DIR$/src/MangaRipper/DataStructures/Series.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/Service.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Services/Service.java" />
     </list>
     <ignored path="Manga Ripper.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,11 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ApplicationPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ApplicationPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="69" column="47" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
+            <state relative-caret-position="163">
+              <caret line="318" column="19" selection-start-line="318" selection-start-column="19" selection-end-line="318" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,38 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Manga3.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java">
+      <file leaf-file-name="Downloader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="35" column="53" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#399#400#0" expanded="true" />
-                <element signature="e#449#450#0" expanded="true" />
-                <element signature="e#610#618#0" expanded="true" />
-                <element signature="e#1373#1382#0" expanded="true" />
-                <element signature="e#2227#2233#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MangaRipper/DataStructures/Chapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/Parser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="20" column="93" selection-start-line="20" selection-start-column="93" selection-end-line="20" selection-end-column="93" />
+            <state relative-caret-position="323">
+              <caret line="54" column="52" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -101,29 +62,24 @@
       <file leaf-file-name="MangaReader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="79" column="77" selection-start-line="79" selection-start-column="77" selection-end-line="79" selection-end-column="77" />
+            <state relative-caret-position="0">
+              <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Series.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MangaRipper/DataStructures/Series.java">
+      <file leaf-file-name="Manga3.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Downloader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="106" column="9" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="126">
+              <caret line="45" column="69" selection-start-line="45" selection-start-column="69" selection-end-line="45" selection-end-column="69" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#610#618#0" expanded="true" />
+                <element signature="e#1369#1378#0" expanded="true" />
+                <element signature="e#2224#2230#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,7 +110,6 @@
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/GUI/DownloadsTableRow.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/DataStructures/Page.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/GUI/CancellationToken.java" />
-        <option value="$PROJECT_DIR$/src/MangaRipper/Services/Service.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/MangaRipper.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/GUI/ChaptersTable.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/GUI/DownloadsTable.java" />
@@ -164,12 +119,13 @@
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/GUI/progressBar.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Services/MangaFreak.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/Parser.java" />
-        <option value="$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/DataStructures/Chapter.java" />
-        <option value="$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/DataStructures/Series.java" />
+        <option value="$PROJECT_DIR$/src/MangaRipper/Services/Service.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java" />
+        <option value="$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java" />
+        <option value="$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java" />
       </list>
     </option>
   </component>
@@ -282,10 +238,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="MangaRipper" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DataStructures" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -820,12 +772,12 @@
       <workItem from="1474921179564" duration="13000" />
       <workItem from="1474922666988" duration="10876000" />
       <workItem from="1478179789403" duration="6908000" />
-      <workItem from="1478196787718" duration="5376000" />
+      <workItem from="1478196787718" duration="6963000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67111000" />
+    <option name="totallyTimeSpent" value="68698000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1345" y="24" width="1301" height="744" extended-state="6" />
@@ -1093,26 +1045,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/MangaFreak.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
           <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="106" column="9" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1133,16 +1069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="69" column="47" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MangaRipper/DataStructures/Series.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1151,25 +1077,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="13" column="64" selection-start-line="13" selection-start-column="64" selection-end-line="13" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="79" column="77" selection-start-line="79" selection-start-column="77" selection-end-line="79" selection-end-column="77" />
+        <state relative-caret-position="0">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="35" column="53" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
+        <state relative-caret-position="126">
+          <caret line="45" column="69" selection-start-line="45" selection-start-column="69" selection-end-line="45" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#399#400#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
             <element signature="e#610#618#0" expanded="true" />
-            <element signature="e#1373#1382#0" expanded="true" />
-            <element signature="e#2227#2233#0" expanded="true" />
+            <element signature="e#1369#1378#0" expanded="true" />
+            <element signature="e#2224#2230#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="54" column="52" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="318" column="19" selection-start-line="318" selection-start-column="19" selection-end-line="318" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

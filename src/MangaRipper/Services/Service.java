@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public abstract class Service {
     public String sitePath;
-    public abstract ArrayList<Chapter> getChapters(String seriesName);
+    public abstract ArrayList<Chapter> getChapters(Series series);
     public abstract ArrayList<Page> getPages(Chapter chapter);
     public abstract ArrayList<Series> getSeries(String query);
 }
