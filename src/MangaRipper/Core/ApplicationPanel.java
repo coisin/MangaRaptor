@@ -6,6 +6,7 @@ import MangaRipper.Core.GUI.progressBar;
 import MangaRipper.DataStructures.Chapter;
 import MangaRipper.DataStructures.Series;
 import MangaRipper.Services.Manga3;
+import MangaRipper.Services.MangaKakalot;
 import MangaRipper.Services.MangaReader;
 import MangaRipper.Services.Service;
 
@@ -46,11 +47,14 @@ public class ApplicationPanel extends JPanel {
     JButton clearChaptersTable;
     JButton clearDownloadsTable;
 
+    JCheckBox packageAsZipCheckBox;
+
     Table<Chapter> chaptersTable = new Table(Chapter.class);
     Table<Chapter> downloadsTable = new Table(Chapter.class);
 
     Table<Series> mangaReaderResultsTable = new Table<Series>(Series.class);
     Table<Series> manga3ResultsTable = new Table<Series>(Series.class);
+    Table<Series> mangaTownResultsTable = new Table<Series>(Series.class);
 
     CardLayout mainLayout = new CardLayout();
 
@@ -105,8 +109,13 @@ public class ApplicationPanel extends JPanel {
             }
         });
 
+        JLabel packageAsZipLabel = new JLabel("Package As Zip? ");
+        packageAsZipCheckBox = new JCheckBox();
+
         topPanel.add(seriesNameField);
         topPanel.add(searchButton);
+        topPanel.add(packageAsZipLabel);
+        topPanel.add(packageAsZipCheckBox);
 
         //Top Panel - End
 
@@ -256,10 +265,12 @@ public class ApplicationPanel extends JPanel {
 
         mangaReaderResultsTable.setPaneSize(700, 400);
         manga3ResultsTable.setPaneSize(700, 400);
+        mangaTownResultsTable.setPaneSize(700, 400);
 
         JTabbedPane serviceTabs = new JTabbedPane();
         serviceTabs.add("MangaReader", mangaReaderResultsTable.getScrollPane());
         serviceTabs.add("Manga3", manga3ResultsTable.getScrollPane());
+        serviceTabs.add("MangaKakalot", mangaTownResultsTable.getScrollPane());
 
         searchCard.add(serviceTabs, BorderLayout.WEST);
         searchCard.add(searchCardCenter, BorderLayout.CENTER);
@@ -283,14 +294,17 @@ public class ApplicationPanel extends JPanel {
 
         MangaReader mangaReader = new MangaReader();
         Manga3 manga3 = new Manga3();
+        MangaKakalot mangaKakalot = new MangaKakalot();
 
         services.add(mangaReader);
         services.add(manga3);
+        services.add(mangaKakalot);
 
         // Match Search Tables To Services
 
         serviceToTable.put(mangaReader, mangaReaderResultsTable);
         serviceToTable.put(manga3, manga3ResultsTable);
+        serviceToTable.put(mangaKakalot, mangaTownResultsTable);
 
         //Set Card
         switchCard("downloader-card");
@@ -326,9 +340,9 @@ public class ApplicationPanel extends JPanel {
         panel.add(component, constraints);
     }
 
-    public void setServices(String url) {
+    public void setServices(Series series) {
         for(Service service:services) {
-            if(url.startsWith(service.sitePath)) {
+            if(series.service.equalsIgnoreCase(service.serviceName)) {
                 this.service =  service;
                 break;
             }
@@ -350,7 +364,7 @@ public class ApplicationPanel extends JPanel {
     }
 
     public void addChaptersFromSeries(Series i) {
-        setServices(i.link);
+        setServices(i);
         ArrayList<Chapter> chapters = service.getChapters(i);
         chaptersTable.addManyRows(chapters);
         removeAllSearchRows();

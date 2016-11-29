@@ -18,6 +18,7 @@ public class MangaReader extends Service {
 
     public MangaReader() {
         sitePath = "http://www.mangareader.net";
+        serviceName = "MangaReader";
     }
 
     public ArrayList<Chapter> getChapters(Series series) {
@@ -53,6 +54,7 @@ public class MangaReader extends Service {
 
             String pagePath = sitePath + pair.one;
             String imagePath = getImagePath(pagePath);
+            System.out.println(imagePath);
             Page page = new Page(pagePath, pair.two, imagePath, imagePath.substring(imagePath.lastIndexOf(".")));
             page.size = downloader.getFileSize(pagePath);
             pages.add(page);
@@ -63,15 +65,12 @@ public class MangaReader extends Service {
 
     public String getImagePath(String pagePath) {
         Downloader downloader = new Downloader();
-        String path="";
 
         String pagePage = downloader.getWebpageAsString(pagePath);
         String expression = "<img id=\"img\"(.*?)src=\"(.*?)\"";
 
-        StringPair pair = Parser.parse(pagePage, expression, 1, 2).get(0);
-        path = pair.two;
-
-        return path;
+        StringPair pair = Parser.parse(pagePage, expression, 2, -1).get(0);
+        return pair.one;
     }
 
     public ArrayList<Series> getSeries(String query) {

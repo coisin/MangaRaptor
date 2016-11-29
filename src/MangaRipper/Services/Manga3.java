@@ -17,6 +17,7 @@ public class Manga3 extends Service {
 
     public Manga3() {
         sitePath = "http://www.manga3.net";
+        serviceName = "Manga3";
     }
 
     public ArrayList<Series> getSeries(String query) {
@@ -69,6 +70,7 @@ public class Manga3 extends Service {
         Downloader downloader = new Downloader();
 
         String exp = "<select class=\"manga_select_page\"(.*?)>(.*?)</select>";
+        System.out.println(chapter.url);
         String chapterSite = Parser.parse(downloader.getWebpageAsString(chapter.url), exp, 2, -1).get(0).one;
 
         exp = "<option value=\"(.*?)\"(.*?)>(.*?)</option>";

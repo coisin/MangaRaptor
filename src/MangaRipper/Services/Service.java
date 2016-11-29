@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public abstract class Service {
     public String sitePath;
+    public String serviceName;
     public abstract ArrayList<Chapter> getChapters(Series series);
     public abstract ArrayList<Page> getPages(Chapter chapter, CancellationToken token);
     public abstract ArrayList<Series> getSeries(String query);
