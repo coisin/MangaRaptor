@@ -385,6 +385,7 @@ public class ApplicationPanel extends JPanel {
             public void run() {
 
                 cancelDownloadButton.setEnabled(true);
+                packageAsZipCheckBox.setEnabled(false);
                 removeFromDownloadsButton.setEnabled(false);
                 addToDownloadButton.setEnabled(false);
                 downloadButton.setEnabled(false);
@@ -421,6 +422,7 @@ public class ApplicationPanel extends JPanel {
     public void stopDownloading() {
         cancelDownloadButton.setEnabled(false);
         removeFromDownloadsButton.setEnabled(true);
+        packageAsZipCheckBox.setEnabled(true);
         addToDownloadButton.setEnabled(true);
         downloadButton.setEnabled(true);
         clearDownloadsTable.setEnabled(true);

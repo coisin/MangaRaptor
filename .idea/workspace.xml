@@ -7,32 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b40a2c3d-26f3-41f1-b276-23068311fdba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MangaRipper/Core/FileManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MangaRipper/Services/MangaKakalot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Manga_Ripper_jar/Manga Ripper.jar" afterPath="$PROJECT_DIR$/out/artifacts/Manga_Ripper_jar/Manga Ripper.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$1.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$10.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$11.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$2.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$3.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$4.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$5.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$6.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$7.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$8.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$9.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/Downloader.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/Downloader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/MangaReader.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/MangaReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/Service.class" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/Service.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Manga Ripper.iml" afterPath="$PROJECT_DIR$/Manga Ripper.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/Service.java" afterPath="$PROJECT_DIR$/src/MangaRipper/Services/Service.java" />
     </list>
     <ignored path="Manga Ripper.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,8 +57,8 @@
       <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-509">
-              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+            <state relative-caret-position="774">
+              <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,25 +66,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Manga3.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Manga3.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="72" column="39" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
+            <state relative-caret-position="310">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="progressBar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/GUI/progressBar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicationPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="399" column="47" selection-start-line="399" selection-start-column="47" selection-end-line="399" selection-end-column="47" />
+            <state relative-caret-position="1278">
+              <caret line="424" column="44" selection-start-line="424" selection-start-column="44" selection-end-line="424" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#13600#13601#0" expanded="true" />
-                <element signature="e#13655#13656#0" expanded="true" />
+                <element signature="e#13656#13657#0" expanded="true" />
+                <element signature="e#13711#13712#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -156,10 +141,10 @@
         <option value="$PROJECT_DIR$/src/MangaRipper/Services/MangaTown.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Services/MangaKakalot.java" />
-        <option value="$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/FileManager.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java" />
+        <option value="$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java" />
       </list>
     </option>
   </component>
@@ -297,6 +282,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MangaRaptor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MangaRaptor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MangaRipper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GUI" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -817,16 +828,16 @@
       <workItem from="1480191027236" duration="472000" />
       <workItem from="1480191806237" duration="5271000" />
       <workItem from="1480275394381" duration="7736000" />
-      <workItem from="1480452796984" duration="6465000" />
+      <workItem from="1480452796984" duration="7387000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93682000" />
+    <option name="totallyTimeSpent" value="94604000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1215" height="1000" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -836,7 +847,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33592018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33813748" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -919,8 +930,8 @@
           <caret line="253" column="48" selection-start-line="253" selection-start-column="48" selection-end-line="253" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13600#13601#0" expanded="true" />
-            <element signature="e#13655#13656#0" expanded="true" />
+            <element signature="e#13656#13657#0" expanded="true" />
+            <element signature="e#13711#13712#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -941,8 +952,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13600#13601#0" expanded="true" />
-            <element signature="e#13655#13656#0" expanded="true" />
+            <element signature="e#13656#13657#0" expanded="true" />
+            <element signature="e#13711#13712#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -963,8 +974,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13600#13601#0" expanded="true" />
-            <element signature="e#13655#13656#0" expanded="true" />
+            <element signature="e#13656#13657#0" expanded="true" />
+            <element signature="e#13711#13712#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -985,8 +996,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13600#13601#0" expanded="true" />
-            <element signature="e#13655#13656#0" expanded="true" />
+            <element signature="e#13656#13657#0" expanded="true" />
+            <element signature="e#13711#13712#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1052,13 +1063,6 @@
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/../javaTables/classes/artifacts/Tables_jar/Tables.jar!/Core/Table.class" />
-    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/GUI/progressBar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/MangaFreak.java" />
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/regex/Matcher.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -1115,18 +1119,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="399" column="47" selection-start-line="399" selection-start-column="47" selection-end-line="399" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#13600#13601#0" expanded="true" />
-            <element signature="e#13655#13656#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/MangaKakalot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
@@ -1137,10 +1129,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/GUI/progressBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-509">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        <state relative-caret-position="774">
+          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1158,11 +1166,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java">
+    <entry file="file://$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="72" column="39" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
-          <folding />
+        <state relative-caret-position="1278">
+          <caret line="424" column="44" selection-start-line="424" selection-start-column="44" selection-end-line="424" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#13656#13657#0" expanded="true" />
+            <element signature="e#13711#13712#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
