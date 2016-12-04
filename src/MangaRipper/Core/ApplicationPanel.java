@@ -24,10 +24,8 @@ import java.util.ArrayList;
  */
 public class ApplicationPanel extends JPanel {
 
-    Dimension size;
-    static int WIDTH = 1000, HEIGHT = WIDTH / 14 * 7;
-
-    ArrayList<Service> services = new ArrayList();
+    static Dimension size;
+    private int WIDTH = 1000, HEIGHT = WIDTH / 14 * 7;
 
     JFileChooser destinationFolderChooser;
 
@@ -49,64 +47,64 @@ public class ApplicationPanel extends JPanel {
 
     JCheckBox packageAsZipCheckBox;
 
-    Table<Chapter> chaptersTable = new Table(Chapter.class);
-    Table<Chapter> downloadsTable = new Table(Chapter.class);
-
-    Table<Series> mangaReaderResultsTable = new Table<Series>(Series.class);
-    Table<Series> manga3ResultsTable = new Table<Series>(Series.class);
-    Table<Series> mangaTownResultsTable = new Table<Series>(Series.class);
-
     CardLayout mainLayout = new CardLayout();
-
-    CancellationToken cancelTokenDownload;
-    Service service;
 
     JPanel searchCard;
     JPanel mainCard;
 
+    // Main Card Tables
+    Table<Chapter> chaptersTable = new Table(Chapter.class);
+    Table<Chapter> downloadsTable = new Table(Chapter.class);
+
+    // Search Card Tables
+    Table<Series> mangaReaderResultsTable = new Table<Series>(Series.class);
+    Table<Series> manga3ResultsTable = new Table<Series>(Series.class);
+    Table<Series> mangaTownResultsTable = new Table<Series>(Series.class);
+
+    CancellationToken cancelTokenDownload;
+    Service service;
+
+    ArrayList<Service> services = new ArrayList();
     HashMap<Service, Table> serviceToTable = new HashMap<Service, Table>();
 
     public ApplicationPanel() {
 
         super();
 
-        chaptersTable.avoidColumn("size");
-        chaptersTable.avoidColumn("progress");
-        chaptersTable.setPaneSize(350, 400);
-
-        downloadsTable.avoidColumn("size");
-        downloadsTable.getColumn("progress").setCellRenderer(new progressBar());
-        downloadsTable.setPaneSize(400, 400);
-
-        //Instantiate Cards
+        // Instantiate Cards - Start
         searchCard = new JPanel();
         searchCard.setLayout(new BorderLayout());
 
         mainCard = new JPanel();
         mainCard.setLayout(new BorderLayout());
 
-        //Instantiation End
-
         setLayout(mainLayout);
+
+        // Instantiate Cards - End
+
+        // Sizing - Start
 
         size = new Dimension(WIDTH, HEIGHT);
         setPreferredSize(size);
 
-        //Top Panel - Start
+        // Sizing - End
+
+        // Main Card - Start
+
+        // Top Panel - Start
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        seriesNameField = new JTextField();
-        seriesNameField.setPreferredSize(new Dimension(600, 20));
+        seriesNameField = new JTextField(60);
+        seriesNameField.addActionListener((ActionEvent actionEvent) -> {
+            searchButton.doClick();
+        });
 
         searchButton = new JButton("Search");
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchButton.setEnabled(false);
-                searchQuery();
-            }
+        searchButton.addActionListener((ActionEvent e) -> {
+            searchButton.setEnabled(false);
+            searchQuery();
         });
 
         JLabel packageAsZipLabel = new JLabel("Package As Zip? ");
@@ -117,9 +115,17 @@ public class ApplicationPanel extends JPanel {
         topPanel.add(packageAsZipLabel);
         topPanel.add(packageAsZipCheckBox);
 
-        //Top Panel - End
+        // Top Panel - End
 
-        //Center Panel - Start
+        // Center Panel - Start
+
+        chaptersTable.avoidColumn("size");
+        chaptersTable.avoidColumn("progress");
+        chaptersTable.setPaneSize(350, 400);
+
+        downloadsTable.avoidColumn("size");
+        downloadsTable.getColumn("progress").setCellRenderer(new progressBar());
+        downloadsTable.setPaneSize(400, 400);
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridBagLayout());
@@ -146,7 +152,7 @@ public class ApplicationPanel extends JPanel {
 
         // Center Panel - End
 
-        //Bottom Panel - Start
+        // Bottom Panel - Start
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -237,9 +243,19 @@ public class ApplicationPanel extends JPanel {
         bottomPanel.add(bottomLeftPanel);
         bottomPanel.add(bottomRightPanel);
 
-        //Bottom Panel - End
+        // Bottom Panel - End
+
+        mainCard.add(topPanel, BorderLayout.NORTH);
+        mainCard.add(chaptersTable.getScrollPane(), BorderLayout.WEST);
+        mainCard.add(centerPanel, BorderLayout.CENTER);
+        mainCard.add(downloadsTable.getScrollPane(), BorderLayout.EAST);
+        mainCard.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Main Card - End
 
         // Search Card - Start
+
+        // Search Card Center - Start
 
         JPanel searchCardCenter = new JPanel();
         searchCardCenter.setLayout(new FlowLayout());
@@ -263,6 +279,10 @@ public class ApplicationPanel extends JPanel {
         searchCardCenter.add(addChaptersButton);
         searchCardCenter.add(backButton);
 
+        // Search Card Center - End
+
+        // Tabbed Pane - Start
+
         mangaReaderResultsTable.setPaneSize(700, 400);
         manga3ResultsTable.setPaneSize(700, 400);
         mangaTownResultsTable.setPaneSize(700, 400);
@@ -272,25 +292,21 @@ public class ApplicationPanel extends JPanel {
         serviceTabs.add("Manga3", manga3ResultsTable.getScrollPane());
         serviceTabs.add("MangaKakalot", mangaTownResultsTable.getScrollPane());
 
+        // Tabbed Pane - End
+
         searchCard.add(serviceTabs, BorderLayout.WEST);
         searchCard.add(searchCardCenter, BorderLayout.CENTER);
 
         // Search Card - End
 
-        // Add To Application Panel
-
-        mainCard.add(topPanel, BorderLayout.NORTH);
-        mainCard.add(chaptersTable.getScrollPane(), BorderLayout.WEST);
-        mainCard.add(centerPanel, BorderLayout.CENTER);
-        mainCard.add(downloadsTable.getScrollPane(), BorderLayout.EAST);
-        mainCard.add(bottomPanel, BorderLayout.SOUTH);
-
-        //Add Cards To Layout
+        // Add Cards To Layout - Start
 
         add(mainCard, "downloader-card");
         add(searchCard, "searcher-card");
 
-        // Add All Services to ArrayList
+        // Add Cards To Layout - End
+
+        // Add Services to ArrayList - Start
 
         MangaReader mangaReader = new MangaReader();
         Manga3 manga3 = new Manga3();
@@ -300,35 +316,25 @@ public class ApplicationPanel extends JPanel {
         services.add(manga3);
         services.add(mangaKakalot);
 
-        // Match Search Tables To Services
+        // Add Services to ArrayList - End
+
+        // Match Search Tables To Services - Start
 
         serviceToTable.put(mangaReader, mangaReaderResultsTable);
         serviceToTable.put(manga3, manga3ResultsTable);
         serviceToTable.put(mangaKakalot, mangaTownResultsTable);
 
-        //Set Card
+        // Match Search Tables To Services - End
+
         switchCard("downloader-card");
 
-    }
-
-    public void removeAllSearchRows() {
-        for(Service service:services) {
-            serviceToTable.get(service).removeAllRows();
-        }
-    }
-
-    public List<Series> getHighlightedSearchRows() {
-        List<Series> series = new ArrayList<Series>();
-        for(Service service:services) {
-            series.addAll(serviceToTable.get(service).getHighlightedRows());
-        }
-        return series;
     }
 
     public void switchCard(String name) {
         mainLayout.show(this, name);
     }
 
+    // For adding components to a GridBagLayout
     public void addToGrid(JComponent component, JPanel panel, int x, int y, int width, int height, int top, int right, int bottom, int left) {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = x;
@@ -340,15 +346,67 @@ public class ApplicationPanel extends JPanel {
         panel.add(component, constraints);
     }
 
-    public void setServices(Series series) {
+    // Set the service to use based on the series given
+    public void setServices(String serviceName) {
         for(Service service:services) {
-            if(series.service.equalsIgnoreCase(service.serviceName)) {
+            if(serviceName.equalsIgnoreCase(service.serviceName)) {
                 this.service =  service;
                 break;
             }
         }
     }
 
+    public void setServices(Series series) {
+        setServices(series.service);
+    }
+
+    public void setServices(Chapter chapter) {
+        setServices(chapter.service);
+    }
+
+    // Return currently used Service
+    public Service getService() {
+        return service;
+    }
+
+    // Return download path
+    public String getDestinationPath() {
+        return destinationFolderField.getText();
+    }
+
+    public void removeAllSearchRows() {
+        for(Service service:services) {
+            serviceToTable.get(service).removeAllRows();
+        }
+    }
+
+    // Iterate through each Service Search Result Table, and returns highlighted rows
+    public List<Series> getHighlightedSearchRows() {
+        List<Series> series = new ArrayList<Series>();
+        for(Service service:services) {
+            series.addAll(serviceToTable.get(service).getHighlightedRows());
+        }
+        return series;
+    }
+
+    // Search for a series, and switches to "searcher-card"
+    public void searchQuery() {
+        String seriesName = seriesNameField.getText();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<Series> series;
+                for(Service service:services) {
+                    series = service.getSeries(seriesName);
+                    serviceToTable.get(service).addManyRows(series);
+                }
+                searchButton.setEnabled(true);
+                switchCard("searcher-card");
+            }
+        }).start();
+    }
+
+    // Add all selected series to the Chapters Table
     public void addAllSeries() {
         new Thread(new Runnable() {
             @Override
@@ -363,6 +421,7 @@ public class ApplicationPanel extends JPanel {
         }).start();
     }
 
+    // Add Series to Chapters Table
     public void addChaptersFromSeries(Series i) {
         setServices(i);
         ArrayList<Chapter> chapters = service.getChapters(i);
@@ -370,11 +429,13 @@ public class ApplicationPanel extends JPanel {
         removeAllSearchRows();
     }
 
+    // Add highlighted Chapters to Downloads Table
     public void addDownloads() {
         List<Chapter> chapters = chaptersTable.getHighlightedRows();
         downloadsTable.addManyRows(chapters);
     }
 
+    // Start Downloading
     public void download() {
 
         if(getDestinationPath().equals("") || getDestinationPath() == null) {
@@ -397,6 +458,7 @@ public class ApplicationPanel extends JPanel {
                 cancelTokenDownload = new CancellationToken();
 
                 for(Chapter chapter:chapters) {
+                    setServices(chapter);
                     downloader.downloadChapter(chapter, chapters.indexOf(chapter), chapter.name, cancelTokenDownload);
                     if(cancelTokenDownload.cancel) {
                         stopDownloading();
@@ -411,14 +473,7 @@ public class ApplicationPanel extends JPanel {
         }).start();
     }
 
-    public Service getService() {
-        return service;
-    }
-
-    public String getDestinationPath() {
-        return destinationFolderField.getText();
-    }
-
+    // Finalize Downloading - Enable / Disable certain buttons
     public void stopDownloading() {
         cancelDownloadButton.setEnabled(false);
         removeFromDownloadsButton.setEnabled(true);
@@ -426,22 +481,6 @@ public class ApplicationPanel extends JPanel {
         addToDownloadButton.setEnabled(true);
         downloadButton.setEnabled(true);
         clearDownloadsTable.setEnabled(true);
-    }
-
-    public void searchQuery() {
-        String seriesName = seriesNameField.getText();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<Series> series;
-                for(Service service:services) {
-                    series = service.getSeries(seriesName);
-                    serviceToTable.get(service).addManyRows(series);
-                }
-                searchButton.setEnabled(true);
-                switchCard("searcher-card");
-            }
-        }).start();
     }
 
 }

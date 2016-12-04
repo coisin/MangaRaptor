@@ -21,6 +21,22 @@ public class MangaReader extends Service {
         serviceName = "MangaReader";
     }
 
+
+
+    public ArrayList<Series> getSeries(String query) {
+        ArrayList<Series> series = new ArrayList();
+        Downloader downloader = new Downloader();
+        String link = sitePath + "/search/?w=" + query.replaceAll(" ", "+");
+
+        String searchPage = downloader.getWebpageAsString(link);
+        String expression = "<div class=\"manga_name\">(.*?)<a href=\"(.*?)\">(.*?)</a>";
+        ArrayList<StringPair> pairs = Parser.parse(searchPage, expression, 2, 3);
+        for(StringPair pair:pairs) {
+            series.add(new Series(pair.two, sitePath + pair.one, serviceName));
+        }
+        return series;
+    }
+
     public ArrayList<Chapter> getChapters(Series series) {
         String path = series.link;
         Downloader downloader = new Downloader();
@@ -32,7 +48,7 @@ public class MangaReader extends Service {
         for(StringPair pair:chapterPair) {
             String chapterPath = sitePath + pair.one;
             if(!Parser.matches(pair.one, "(.*?)/([0-9]+)"))continue;
-            Chapter chapter = new Chapter(chapterPath, pair.two, "MangaReader");
+            Chapter chapter = new Chapter(chapterPath, pair.two, serviceName);
             chapters.add(chapter);
         }
         return chapters;
@@ -71,20 +87,6 @@ public class MangaReader extends Service {
 
         StringPair pair = Parser.parse(pagePage, expression, 2, -1).get(0);
         return pair.one;
-    }
-
-    public ArrayList<Series> getSeries(String query) {
-        ArrayList<Series> series = new ArrayList();
-        Downloader downloader = new Downloader();
-        String link = sitePath + "/search/?w=" + query.replaceAll(" ", "+");
-
-        String searchPage = downloader.getWebpageAsString(link);
-        String expression = "<div class=\"manga_name\">(.*?)<a href=\"(.*?)\">(.*?)</a>";
-        ArrayList<StringPair> pairs = Parser.parse(searchPage, expression, 2, 3);
-        for(StringPair pair:pairs) {
-            series.add(new Series(pair.two, sitePath + pair.one, "MangaReader"));
-        }
-        return series;
     }
 
 }

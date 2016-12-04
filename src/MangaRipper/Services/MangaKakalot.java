@@ -20,24 +20,6 @@ public class MangaKakalot extends Service {
     }
 
     @Override
-    public ArrayList<Chapter> getChapters(Series series) {
-        Downloader downloader = new Downloader();
-        ArrayList<Chapter> chapters = new ArrayList<Chapter>();
-
-        String chapterSite = downloader.getWebpageAsString(series.link);
-        String exp = "<span><a href=\"(.*?)\"(.*?)>(.*?)</a>";
-        ArrayList<StringPair> chaptersHtml = Parser.parse(chapterSite, exp, 1, 3);
-        for(StringPair pair:chaptersHtml) {
-            String link = pair.one;
-            String name = pair.two;
-            Chapter chapter = new Chapter(link, name, series.service);
-            chapters.add(chapter);
-        }
-
-        return chapters;
-    }
-
-    @Override
     public ArrayList<Series> getSeries(String query) {
 
         Downloader downloader = new Downloader();
@@ -52,10 +34,28 @@ public class MangaKakalot extends Service {
         ArrayList<StringPair> htmlSeries = Parser.parse(searchPageHtml, exp, 3, 5);
 
         for(StringPair pair:htmlSeries) {
-            series.add(new Series(pair.two, pair.one, "MangaKakalot"));
+            series.add(new Series(pair.two, pair.one, serviceName));
         }
 
         return series;
+    }
+
+    @Override
+    public ArrayList<Chapter> getChapters(Series series) {
+        Downloader downloader = new Downloader();
+        ArrayList<Chapter> chapters = new ArrayList<Chapter>();
+
+        String chapterSite = downloader.getWebpageAsString(series.link);
+        String exp = "<span><a href=\"(.*?)\"(.*?)>(.*?)</a>";
+        ArrayList<StringPair> chaptersHtml = Parser.parse(chapterSite, exp, 1, 3);
+        for(StringPair pair:chaptersHtml) {
+            String link = pair.one;
+            String name = pair.two;
+            Chapter chapter = new Chapter(link, name, serviceName);
+            chapters.add(chapter);
+        }
+
+        return chapters;
     }
 
     @Override
@@ -90,16 +90,5 @@ public class MangaKakalot extends Service {
         }
 
         return pages;
-    }
-
-
-    public String getImagePath(String pagePath) {
-        Downloader downloader = new Downloader();
-
-        String pagePage = downloader.getWebpageAsString(pagePath);
-        String expression = "<img src=\"(.*?)\" id=\"image\"/>";
-
-        StringPair pair = Parser.parse(pagePage, expression, 1, -1).get(0);
-        return pair.one;
     }
 }

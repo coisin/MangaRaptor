@@ -21,10 +21,15 @@ public class Downloader {
     ApplicationPanel panel = MangaRipper.mangaRipper.applicationPanel;
     FileManager fileManager;
 
+    // For keeping track of Downloads
+    Chapter currentChapterDownloading;
+    int currentChapterDownloadingIndex;
+
     public Downloader() {
     	fileManager = new FileManager();
     }
 
+    // Returns HTML of a page page, given a URL as a String
     public String getWebpageAsString(String link) {
         String page = "";
         byte[] buff = new byte[150];
@@ -45,6 +50,7 @@ public class Downloader {
         return page;
     }
 
+    // Downloads File from URL
     public void downloadFile(String filePath, String fileName) {
         System.out.println("DOWNLOADING " + fileName);
         try {
@@ -65,9 +71,6 @@ public class Downloader {
             e.printStackTrace();
         }
     }
-
-    Chapter currentChapterDownloading;
-    int currentChapterDownloadingIndex;
 
     public void downloadChapter(Chapter chapter, int index, String fileName, CancellationToken token) {
         if(chapter.progress >= 99.99) {
@@ -104,6 +107,7 @@ public class Downloader {
         }
     }
 
+    // Update download progress periodically
     public void updateProgress(int pageSize) {
         int totalSize = currentChapterDownloading.size;
         double percentagePageCompletes = ((double)pageSize / (double)totalSize) * 100.00;
@@ -112,6 +116,7 @@ public class Downloader {
 
     }
 
+    // Returns total size of files in a Pages ArrayList
     public int getPagesSize(ArrayList<Page> pages) {
         int size = 0;
         for(Page page:pages) {

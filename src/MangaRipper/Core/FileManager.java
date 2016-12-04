@@ -80,6 +80,7 @@ public class FileManager {
         }
     }
 
+    // Close Streams
     public void close() {
         try {
             output.close();

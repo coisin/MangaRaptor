@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
  */
 public class Parser {
 
+    // Perform Regex on String, and returns a String Pair of two groups
     public static ArrayList<StringPair> parse(String original, String expression, int indexOfFirst, int indexOfSecond) {
 
         Pattern pattern = Pattern.compile(expression);

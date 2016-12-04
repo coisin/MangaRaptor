@@ -35,7 +35,7 @@ public class Manga3 extends Service {
             String link = sitePath + rowInfo.one;
             String name = rowInfo.two;
 
-            series.add(new Series(name, link, "Manga3"));
+            series.add(new Series(name, link, serviceName));
         }
 
         return series;
@@ -58,8 +58,8 @@ public class Manga3 extends Service {
                 name = name.substring(0, name.indexOf("<span>"));
             }
 
-            if(!chapters.contains(new Chapter(link, name, "Manga3")))
-                chapters.add(new Chapter(link, name, "Manga3"));
+            if(!chapters.contains(new Chapter(link, name, serviceName)))
+                chapters.add(new Chapter(link, name, serviceName));
         }
 
         return chapters;
