@@ -7,48 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b40a2c3d-26f3-41f1-b276-23068311fdba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$10.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$11.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/ApplicationPanel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/Downloader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/GUI/CancellationToken.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/GUI/progressBar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/MangaRipper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Core/Parser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/DataStructures/Chapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/DataStructures/Page.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/DataStructures/Series.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/DataStructures/StringPair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/MangaReader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/MangaRipper/Services/Service.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/ApplicationPanel.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Core/ApplicationPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/Downloader.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Core/Downloader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/FileManager.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Core/FileManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/GUI/CancellationToken.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Core/GUI/CancellationToken.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/GUI/progressBar.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Core/GUI/progressBar.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/MangaRipper.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Core/MangaRipper.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Core/Parser.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Core/Parser.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/DataStructures/Chapter.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/DataStructures/Chapter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/DataStructures/Page.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/DataStructures/Page.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/DataStructures/Series.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/DataStructures/Series.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/DataStructures/StringPair.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/DataStructures/StringPair.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/Manga3.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Services/Manga3.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/MangaKakalot.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Services/MangaKakalot.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Services/MangaReader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MangaRipper/Services/Service.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Services/Service.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Manga Ripper.iml" afterPath="$PROJECT_DIR$/Manga Ripper.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Manga Ripper/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/out/production/Manga Ripper/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MangaRaptor/Core/FileManager.java" afterPath="$PROJECT_DIR$/src/MangaRaptor/Core/FileManager.java" />
     </list>
     <ignored path="Manga Ripper.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,15 +29,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ApplicationPanel.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MangaRaptor/Core/ApplicationPanel.java">
+      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MangaRaptor/Core/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+            <state relative-caret-position="827">
+              <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#11748#11749#0" expanded="true" />
-                <element signature="e#11792#11793#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,6 +86,8 @@
         <option value="$PROJECT_DIR$/src/MangaRipper/Core/Parser.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Services/MangaKakalot.java" />
         <option value="$PROJECT_DIR$/src/MangaRipper/Services/MangaReader.java" />
+        <option value="$PROJECT_DIR$/src/MangaRaptor/Core/ApplicationPanel.java" />
+        <option value="$PROJECT_DIR$/src/MangaRaptor/Core/FileManager.java" />
       </list>
     </option>
   </component>
@@ -762,12 +721,12 @@
       <workItem from="1480275394381" duration="7736000" />
       <workItem from="1480452796984" duration="7387000" />
       <workItem from="1480791959745" duration="38000" />
-      <workItem from="1480878394447" duration="3832000" />
+      <workItem from="1480878394447" duration="4147000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98474000" />
+    <option name="totallyTimeSpent" value="98789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1215" height="1000" extended-state="6" />
@@ -856,7 +815,6 @@
         <state relative-caret-position="4140">
           <caret line="253" column="48" selection-start-line="253" selection-start-column="48" selection-end-line="253" selection-end-column="48" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#11748#11749#0" expanded="true" />
             <element signature="e#11792#11793#0" expanded="true" />
           </folding>
@@ -878,7 +836,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#11748#11749#0" expanded="true" />
             <element signature="e#11792#11793#0" expanded="true" />
           </folding>
@@ -900,7 +857,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#11748#11749#0" expanded="true" />
             <element signature="e#11792#11793#0" expanded="true" />
           </folding>
@@ -922,7 +878,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#11748#11749#0" expanded="true" />
             <element signature="e#11792#11793#0" expanded="true" />
           </folding>
@@ -1043,16 +998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MangaRaptor/Core/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MangaRaptor/Core/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1105,12 +1050,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MangaRaptor/Core/ApplicationPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+        <state relative-caret-position="180">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#11748#11749#0" expanded="true" />
             <element signature="e#11792#11793#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MangaRaptor/Core/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="827">
+          <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

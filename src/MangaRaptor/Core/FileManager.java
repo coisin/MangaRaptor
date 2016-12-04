@@ -17,10 +17,7 @@ public class FileManager {
 
     String relativePath;
 
-    public FileManager() {
-
-    }
-
+    // Create new Zip file and open output stream
     public void newZip(String name) {
         if(!name.endsWith(".zip")) name += ".zip";
         File file = new File(name);
@@ -35,11 +32,13 @@ public class FileManager {
         }
     }
 
+    // Set relative path to folder path
     public void newFolder(String name) {
         if(!name.endsWith("/"))name += "/";
         relativePath = name;
     }
 
+    // Write input stream to zip file's output stream
     public void writeZip(InputStream input, String fileName) {
         currentEntry = new ZipEntry(fileName);
         try {
@@ -60,6 +59,7 @@ public class FileManager {
         }
     }
 
+    // Write input stream to file in folder
     public void write(InputStream input, String fileName) {
         fileName = relativePath + fileName;
         File file = new File(fileName);
