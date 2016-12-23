@@ -357,11 +357,11 @@ public class ApplicationPanel extends JPanel {
     }
 
     public void setServices(Series series) {
-        setServices(series.service);
+        setServices(series.getService());
     }
 
     public void setServices(Chapter chapter) {
-        setServices(chapter.service);
+        setServices(chapter.getService());
     }
 
     // Return currently used Service
@@ -459,7 +459,7 @@ public class ApplicationPanel extends JPanel {
 
                 for(Chapter chapter:chapters) {
                     setServices(chapter);
-                    downloader.downloadChapter(chapter, chapters.indexOf(chapter), chapter.name, cancelTokenDownload);
+                    downloader.downloadChapter(chapter, chapters.indexOf(chapter), chapter.getName(), cancelTokenDownload);
                     if(cancelTokenDownload.cancel) {
                         stopDownloading();
                         cancelTokenDownload = null;

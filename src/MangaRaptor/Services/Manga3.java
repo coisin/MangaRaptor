@@ -32,8 +32,8 @@ public class Manga3 extends Service {
         ArrayList<StringPair> rowInfos = Parser.parse(siteSearch, exp, 2, 3);
 
         for(StringPair rowInfo:rowInfos) {
-            String link = sitePath + rowInfo.one;
-            String name = rowInfo.two;
+            String link = sitePath + rowInfo.getOne();
+            String name = rowInfo.getTwo();
 
             series.add(new Series(name, link, serviceName));
         }
@@ -45,15 +45,15 @@ public class Manga3 extends Service {
         Downloader downloader = new Downloader();
         ArrayList<Chapter> chapters = new ArrayList<Chapter>();
 
-        String seriesSite = downloader.getWebpageAsString(series.link);
+        String seriesSite = downloader.getWebpageAsString(series.getLink());
         String exp = "Manga Chapters(.*)";
-        seriesSite = Parser.parse(seriesSite, exp, 1, -1).get(0).one;
+        seriesSite = Parser.parse(seriesSite, exp, 1, -1).get(0).getOne();
         exp = "<a href=\"(.*?)\">(.*?)</a>";
         ArrayList<StringPair> rowInfos = Parser.parse(seriesSite, exp, 1, 2);
 
         for(StringPair rowInfo:rowInfos) {
-            String link = sitePath + rowInfo.one;
-            String name = rowInfo.two;
+            String link = sitePath + rowInfo.getOne();
+            String name = rowInfo.getTwo();
             if(name.contains("<span>")){
                 name = name.substring(0, name.indexOf("<span>"));
             }
@@ -70,8 +70,8 @@ public class Manga3 extends Service {
         Downloader downloader = new Downloader();
 
         String exp = "<select class=\"manga_select_page\"(.*?)>(.*?)</select>";
-        System.out.println(chapter.url);
-        String chapterSite = Parser.parse(downloader.getWebpageAsString(chapter.url), exp, 2, -1).get(0).one;
+        System.out.println(chapter.getUrl());
+        String chapterSite = Parser.parse(downloader.getWebpageAsString(chapter.getUrl()), exp, 2, -1).get(0).getOne();
 
         exp = "<option value=\"(.*?)\"(.*?)>(.*?)</option>";
         ArrayList<StringPair> rowInfos = Parser.parse(chapterSite, exp, 1, 3);
@@ -81,17 +81,17 @@ public class Manga3 extends Service {
                 return null;
             }
 
-            String link = sitePath + rowInfo.one;
-            String name = rowInfo.two;
+            String link = sitePath + rowInfo.getOne();
+            String name = rowInfo.getTwo();
 
             String pageSite = downloader.getWebpageAsString(link);
             exp = "img id=\"gohere\"(.*?)src=\"(.*?)\"";
-            String image = Parser.parse(pageSite, exp, 2, -1).get(0).one;
+            String image = Parser.parse(pageSite, exp, 2, -1).get(0).getOne();
             String ext = image.substring(image.lastIndexOf("."));
 
             int imageSize = downloader.getFileSize(image);
             Page page = new Page(link, name, image, ext);
-            page.size = imageSize;
+            page.setSize(imageSize);
             pages.add(page);
 
         }

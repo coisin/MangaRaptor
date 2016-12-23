@@ -34,7 +34,7 @@ public class MangaKakalot extends Service {
         ArrayList<StringPair> htmlSeries = Parser.parse(searchPageHtml, exp, 3, 5);
 
         for(StringPair pair:htmlSeries) {
-            series.add(new Series(pair.two, pair.one, serviceName));
+            series.add(new Series(pair.getTwo(), pair.getOne(), serviceName));
         }
 
         return series;
@@ -45,12 +45,12 @@ public class MangaKakalot extends Service {
         Downloader downloader = new Downloader();
         ArrayList<Chapter> chapters = new ArrayList<Chapter>();
 
-        String chapterSite = downloader.getWebpageAsString(series.link);
+        String chapterSite = downloader.getWebpageAsString(series.getLink());
         String exp = "<span><a href=\"(.*?)\"(.*?)>(.*?)</a>";
         ArrayList<StringPair> chaptersHtml = Parser.parse(chapterSite, exp, 1, 3);
         for(StringPair pair:chaptersHtml) {
-            String link = pair.one;
-            String name = pair.two;
+            String link = pair.getOne();
+            String name = pair.getTwo();
             Chapter chapter = new Chapter(link, name, serviceName);
             chapters.add(chapter);
         }
@@ -63,9 +63,9 @@ public class MangaKakalot extends Service {
         Downloader downloader = new Downloader();
         ArrayList<Page> pages = new ArrayList<>();
 
-        String pageHtml = downloader.getWebpageAsString(chapter.url);
+        String pageHtml = downloader.getWebpageAsString(chapter.getUrl());
         String exp = "data = '(.*?)'";
-        String pageDataStr = Parser.parse(pageHtml, exp, 1, -1).get(0).one;
+        String pageDataStr = Parser.parse(pageHtml, exp, 1, -1).get(0).getOne();
 
         String[] pageData = pageDataStr.split("http");
 
@@ -84,7 +84,7 @@ public class MangaKakalot extends Service {
             String ext = link.substring(link.lastIndexOf("."));
             String name = Integer.toString(i);
             Page page = new Page(link, name, link, ext);
-            page.size = downloader.getFileSize(link);
+            page.setSize(downloader.getFileSize(link));
 
             pages.add(page);
         }

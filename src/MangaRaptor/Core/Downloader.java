@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Downloader {
 
-    ApplicationPanel panel = MangaRipper.mangaRipper.applicationPanel;
+    ApplicationPanel panel = MangaRaptor.mangaRaptor.applicationPanel;
     FileManager fileManager;
 
     // For keeping track of Downloads
@@ -72,7 +72,7 @@ public class Downloader {
     }
 
     public void downloadChapter(Chapter chapter, int index, String fileName, CancellationToken token) {
-        if(chapter.progress >= 99.99) {
+        if(chapter.getProgress() >= 99.99) {
             return;
         }
 
@@ -81,7 +81,7 @@ public class Downloader {
         if(pages == null) {
             return;
         }
-        chapter.size = getPagesSize(pages);
+        chapter.setSize(getPagesSize(pages));
         currentChapterDownloading = chapter;
         currentChapterDownloadingIndex = index;
 
@@ -98,8 +98,8 @@ public class Downloader {
 
     public void downloadPages(ArrayList<Page> pages, String fileName, CancellationToken token) {
         for(Page page : pages) {
-            downloadFile(page.imageUrl, page.name + page.extension);
-            updateProgress(page.size);
+            downloadFile(page.getImageUrl(), page.getName() + page.getExtension());
+            updateProgress(page.getSize());
             if(token.cancel) {
                 return;
             }
@@ -108,9 +108,9 @@ public class Downloader {
 
     // Update download progress periodically
     public void updateProgress(int pageSize) {
-        int totalSize = currentChapterDownloading.size;
+        int totalSize = currentChapterDownloading.getSize();
         double percentagePageCompletes = ((double)pageSize / (double)totalSize) * 100.00;
-        currentChapterDownloading.progress += percentagePageCompletes;
+        currentChapterDownloading.setProgress(currentChapterDownloading.getProgress() + percentagePageCompletes);
         panel.downloadsTable.update(currentChapterDownloading);
 
     }
@@ -119,7 +119,7 @@ public class Downloader {
     public int getPagesSize(ArrayList<Page> pages) {
         int size = 0;
         for(Page page:pages) {
-            size += page.size;
+            size += page.getSize();
         }
         return size;
     }
